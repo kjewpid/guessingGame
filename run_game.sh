@@ -10,3 +10,6 @@ javac GuessingGame.java
 echo "running..."
 java GuessingGame
 echo "Done!"
+echo "Removing class files..."
+git rm *.class
+
