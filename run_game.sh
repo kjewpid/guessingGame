@@ -1,9 +1,9 @@
 #!/bin/bash
 
-NAME = "Josephine_Jelkeby_Ginguene"
-mkdir "$NAME"_labb
-cp *.java /"$NAME"_labb
-cd "$NAME"_labb
+NAME="Josephine_Jelkeby_Ginguene"
+mkdir "${NAME}_labb"
+cp *.java "${NAME}_labb"
+cd "${NAME}_labb"
 echo "Running game from $(pwd)"
 echo "compiling..."
 javac GuessingGame.java
@@ -11,5 +11,5 @@ echo "running..."
 java GuessingGame
 echo "Done!"
 echo "Removing class files..."
-git rm *.class
-
+rm *.class
+ls
