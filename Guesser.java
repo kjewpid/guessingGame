@@ -64,11 +64,11 @@ public Guesser(int low, int high){
     // As long as it is not a valid reply (one of "T" and "F")
     // write an error message, and read a new reply.
     // When you have gotten a valid reply, return it.
-	Console console = System.console();
-	reply = console.readLine();
-	while (!reply.equalsIgnoreCase("T")&&!reply.equalsIgnoreCase("F"){
+    	Console console = System.console();
+    	reply = console.readLine();
+	while (!reply.equalsIgnoreCase("T")&&!reply.equalsIgnoreCase("F")){
 		System.out.println("Please answer T of F");
-		reply.console.readLine();
+		reply = console.readLine();
 	}
     return reply;
   }
