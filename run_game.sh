@@ -9,3 +9,4 @@ echo "compiling..."
 javac GuessingGame.java
 echo "running..."
 java GuessingGame
+echo "Done!"
