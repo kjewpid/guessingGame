@@ -66,7 +66,7 @@ public Guesser(int low, int high){
     // When you have gotten a valid reply, return it.
     	Console console = System.console();
     	reply = console.readLine();
-	while (!reply.equalsIgnoreCase("T")&&!reply.equalsIgnoreCase("F")){
+	while (!reply.equalsIgnoreCase("t")&&!reply.equalsIgnoreCase("f")){
 		System.out.println("Please answer T of F");
 		reply = console.readLine();
 	}
