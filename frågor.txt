@@ -1,0 +1,2 @@
+Push är ett kommando som används för att ladda upp commits man gjort i sitt lokala repository till ett remote repository på t.ex. github. 
+
