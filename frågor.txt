@@ -18,3 +18,7 @@ om man vill jobba på flera versioner av ens projekt pararellt. Det är vanligt 
 en sista vanlig typ av branch, som används för att förbereda release av ett program. 
 
 Git reset är ett sätt för att gå tillbaka i historiken. Reset kan påverka historiken, men det beror på vilken flagga man kombinerar kommandot med.
+
+Om man använder flaggan —soft, så flyttas HEAD tillbaka till en tidigare commit och ändringarna är kvar i staging area samt i working directory. Detta betyder alltså att man kan commita exakt samma ändringar igen, man måste inte 
+nödvändigtvis ändra något. En fördel med detta är att man kan t.ex. rätta till något som blev fel när man commita, t.ex. meddelandet. För att visa hur det fungerar så skapar jag en branch i mitt projekt, där jag kan testa olika reset 
+kommandon utan att det påverkar main branchen.
