@@ -7,3 +7,6 @@ repository.
 
 Log (git log) är ett kommando som används för att visa historiken av commits. Varje commit identifieras av en unik hash, som består av en massa tecken. Om man använder flaggan —oneline så kan man få en kortare identifierande sträng som endast
 består av 7 tecken (checksum). 
+
+Status är ett kommando som används för att rapportera den nuvarande statusen i working directory och staging area. Staging area är där filer läggs till när man använder kommandot git add, det är dem filerna man vill ha med i nästa commit.
+Status-kommandot visar även om det finns untracked files, samt vilken branch man befinner sig på och om den är up to date med ett eventuellt remote repository. 
