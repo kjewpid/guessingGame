@@ -16,3 +16,5 @@ main/master branchen. Skulle man t.ex. skapa en fil i en branch, så kommer den 
 förstöra det man jobbat på hittils, så kan man bara skapa en ny branch och testa sin idé säkert där. Skulle det inte gå som man hade tänkt, så kan man bara återgå till versionen som är kvar i main/master branchen. Brancher är även användbart
 om man vill jobba på flera versioner av ens projekt pararellt. Det är vanligt att använda sig av feature-brancher, alltså brancher som används för att tillföra nya funktioner. Bugfix brancher används för felsökning och release branches är 
 en sista vanlig typ av branch, som används för att förbereda release av ett program. 
+
+Git reset är ett sätt för att gå tillbaka i historiken. Reset kan påverka historiken, men det beror på vilken flagga man kombinerar kommandot med.
