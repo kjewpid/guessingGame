@@ -4,3 +4,6 @@ Pull är kommandot som används för att hämta commits från ett remote reposit
 till sitt repository men inte merge dem direkt utan kolla på dem först, så kan man använda kommandot först. Detta kan vara bra om man t.ex. har ett team som tillsammans jobbar på ett program och pushar commits till ett remote repository; 
 kanske är det bra att kolla vad andra har pushat innan man merge med sina lokala filer för att säkerställa att det kommer gå bra. Efter att ha fetch:at så kan man använda kommandot merge, vilket synkar remote commits med ens lokala
 repository. 
+
+Log (git log) är ett kommando som används för att visa historiken av commits. Varje commit identifieras av en unik hash, som består av en massa tecken. Om man använder flaggan —oneline så kan man få en kortare identifierande sträng som endast
+består av 7 tecken (checksum). 
