@@ -1,2 +1,6 @@
 Push är ett kommando som används för att ladda upp commits man gjort i sitt lokala repository till ett remote repository på t.ex. github. 
 
+Pull är kommandot som används för att hämta commits från ett remote repository och merge dem med sina lokala filer/repository.  Pull är faktisk ett kommando som kombinerar två andra kommandon: fetch och merge. Om man vill ladda ner commits
+till sitt repository men inte merge dem direkt utan kolla på dem först, så kan man använda kommandot först. Detta kan vara bra om man t.ex. har ett team som tillsammans jobbar på ett program och pushar commits till ett remote repository; 
+kanske är det bra att kolla vad andra har pushat innan man merge med sina lokala filer för att säkerställa att det kommer gå bra. Efter att ha fetch:at så kan man använda kommandot merge, vilket synkar remote commits med ens lokala
+repository. 
