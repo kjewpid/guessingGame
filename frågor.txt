@@ -27,3 +27,6 @@ Exempel soft:
 Skapar en ny fil, testfile.txt (i branchen test_branch) och commitar med meddelandet “creating testfilee.txt”. Men så inser jag att mitt meddelande var felstavat! Då använder jag kommando “git reset —soft HEAD~1”. Då flyttas HEAD tillbaka 
 1 steg, och med kommando “git status”, så ser jag att min fil är i staging area och working directory, och redo att bli commitad igen. Jag commitar igen, denna gång med ett korrekt meddelande “creating testfile.txt”. Om jag nu använder 
 kommando “git log —oneline”, så ser jag att min senaste commit har meddelande “creating testfile.txt”, alltså det rättade meddelandet.
+
+En annan flagga som kan kombineras med kommandot “git reset” är —mixed. Om man inte anger någon flagga, så är det denna som används by default. Med denna flaggan så flyttas HEAD tillbaka till en tidigare commit och ändringarna är kvar i 
+working directory, men inte i staging area! Detta kan vara bra ifall man råkat commita filer som inte skulle med. 
