@@ -62,3 +62,10 @@ i filen och lösa problemet själv genom att välja vilken kod man vill behålla
 kännas som att poängen med revert plötsligt blir ganska meningslös: tanken var ju att man skulle kunna använda git revert istället för att behöva göra allt manuellt. Men det finns ändå en fördel med git revert,
 och det är att historiken blir tydligare. Om man samarbetar med andra, så är det tydligt för dem i historiken vad det är man har reverted, vilken commit som man “tagit bort” i den nya commiten. Så det är fortfarande bra att använda revert 
 eftersom det gör det väldigt tydligt i historiken vad man gjort.
+
+Exempel revert:
+För att demonstrera detta, så la jag till lite text i min fill testfile.txt, i några omgångar. Skrev en mening, commita, skrev en mening till, commita igen osv.. Efter att ha gjort detta några gånger, så använde jag “git log —oneline” för 
+att kunna kopiera den unika checksum till commiten jag ville reverta (jag valde den andra commiten av att lägga till text). Jag kopierade checksum, och använde sedan kommando “git revert <checksum>”, och som jag förväntat mig uppstod en 
+konflikt. Så jag gick in i filen, letade fram tecknen som visade var problemet var, och bestämde manuellt vad jag ville behålla och inte. Därefter stängde jag ner filen, och använde kommando “git log —oneline” igen. Nu kunde jag se att min 
+senaste commit var en revert av en tidigare commit, och alla andra commits jag gjort var kvar. Så det var tydligt för mig i historiken exakt vad jag hade gjort och vilken commit jag revertat.
+
