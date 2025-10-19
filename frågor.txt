@@ -85,3 +85,8 @@ velat, så är min fil en_fil.txt inte längre med i staging area, och jag kan c
 En annan flagga som är användbar i kombination med “git restore” är —source. Med denna så kan man hämta en version av en fil från en tidigare commit och byta ut versionen i ens  nuvarande working directory mot den filen. Historiken påverkas
 inte av detta, och det skapas inte en ny commit automatiskt som när man använder “git revert”. Istället kan man först inspektera ändringarna i filen själv, och commita ifall man vill det. 
 
+Exempel —source:
+Jag testade detta i min test-branch, och precis som när jag skulle demonstrerar hur “git revert” fungerade så skrev jag lite text i testfile.txt, commita, skrev lite mer text, commita, och gjorde så några gånger. Därefter använde jag 
+kommando “git log —oneline” för att se vilken commit-version jag ville återgå till, och såg att det var för 4 commits sedan, alltså HEAD~4. Så med kommando “git restore —source HEAD~4 testfile.txt” så hömtade jag versionen från den commiten
+till mitt current working directory. Och för att se till att det gick som jag hoppades, så öppnade jag filen testfile.txt och kunde se att den såg ut som den andra versionen av filen, då jag bara lagt till en rad av text (första var när jag
+skapade filen och den var tom). Jag la sedan till filen till staging area, och commita med meddelande “restoring testfile.txt to early version”.
