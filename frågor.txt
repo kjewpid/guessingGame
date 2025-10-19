@@ -74,3 +74,4 @@ flaggor beroende på vad man vill göra. En viktigt och tydlig skillnad mellan �
 fil i ens nuvarande working directory till en tidigare version av den filen. “Git restore” är även mycket mer specifikt ön “git reset”, eftersom man anger vilken fil det är man vill restore. Detta gör det möjligt att ha mer kontroll över 
 arbetet.
 
+En flagga som kan kombineras med “git restore” är —staged. Denna används när man vill ta bort en fil från staging area men behålla ändringarna i working directory (som “git reset —mixed” gör). 
