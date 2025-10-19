@@ -45,3 +45,10 @@ fördel skulle kunna vara ifall man gjort något riktigt fel och bara känner ma
 projektet, så kan jag använda —hard flaggan för att snabbt gå tillbaka och börja om från ruta 1/från den senaste commiten innan jag skapade den onödiga filen. Även om det fortfarande kan vara bra att ha det i historiken, att man skapade 
 filen och sen tog bort den, så finns det kanske tillfällen då det verkligen känns onödigt (kanske om man jobbar helt själv på ett projekt och det inte är så viktigt för någon annan än mig själv att kunna se historiken) och då kan ett 
 kommando som “git reset —hard” vara smidigt och effektivt att använda.
+
+Exempel —hard:
+För att visa hur det fungerar i ett exempel, så skapar jag filen “cursed_file.txt”. (I scenariot är jag väldigt nyvaken och inte fått i mig mitt morgonkaffe än)
+Jag lägger till filen i staging area med kommando “git add cursed_file.txt” och commitar (git commit -m “dangerous file”). Efter en stark kopp kaffe inser jag äntligen hur dumt det var av mig att commita och ens skapa en så farlig fil 
+(som namnet tyder på). Jag använder kommando “git reset —hard HEAD~1” för att lösa detta. Jag får meddelandet att HEAD har flyttats tillbaka till en tidigare commit. För att säkerställa att problemet är löst, så använder jag kommando 
+“git status”. Där står det att inget finns i staging area, och jag kan andas ut lite. Men jag måste också vara säker på att filen är borta från mitt working directory, så jag använder kommando “ls” för att lista allt i katalogen. Och som 
+tur är så är cursed_file.txt helt borta, och problemet är löst!
