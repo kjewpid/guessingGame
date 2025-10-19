@@ -81,3 +81,7 @@ För att förklara med ett exempel, så gör jag en ändring i min fil testfile.
 rätt saker, och inser då att jag hellre skulle vilja göra två olika commits: en för att jag la till text i testfile.txt, och en för att jag skapade filen en_fil.txt. I utskriften när jag använder “git status” så står det faktiskt exakt hur 
 jag löser detta: genom att använda flaggan —staged i kombination med “git restore”. Så jag anger kommando “git restore —staged en_fil.txt”, och sen “git status” igen för att säkerställa mig om att det gick som jag ville. Och precis som jag 
 velat, så är min fil en_fil.txt inte längre med i staging area, och jag kan commita ändringen jag gjort i testfile.txt med ett relevant meddelande först, och därefter lägga till en_fil.txt i staging area igen och commita. 
+
+En annan flagga som är användbar i kombination med “git restore” är —source. Med denna så kan man hämta en version av en fil från en tidigare commit och byta ut versionen i ens  nuvarande working directory mot den filen. Historiken påverkas
+inte av detta, och det skapas inte en ny commit automatiskt som när man använder “git revert”. Istället kan man först inspektera ändringarna i filen själv, och commita ifall man vill det. 
+
