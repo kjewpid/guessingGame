@@ -94,3 +94,7 @@ skapade filen och den var tom). Jag la sedan till filen till staging area, och c
 Om man använder “git restore” utan flagga, så tar man bort ändringar från working directory och återställer filen till versionen som var med i den senaste commiten. Så det går alltså inte att använda detta om man först commitar, detta 
 kommando ska användas innan man commitat.
 
+Exempel restore:
+För att återigen demonstrera, så lägger jag till en massa tecken och text i filen testfile.txt, men ångar mig och vill gå tillbaka till hur filen var innan. Istället för att manuellt gå in i filen och radera rad för rad, så använder jag 
+bara kommando “git restore testfile.txt”. Därefter öppnar jag filen, och ser att all text och alla tecken som jag lagt till är borttagna, och testfile.txt har återgått till den senaste versionen i commit historiken. Väldigt mycket 
+effektivare och smidigare än om jag gått in och ändrat allt manuellt.
