@@ -69,3 +69,8 @@ att kunna kopiera den unika checksum till commiten jag ville reverta (jag valde 
 konflikt. Så jag gick in i filen, letade fram tecknen som visade var problemet var, och bestämde manuellt vad jag ville behålla och inte. Därefter stängde jag ner filen, och använde kommando “git log —oneline” igen. Nu kunde jag se att min 
 senaste commit var en revert av en tidigare commit, och alla andra commits jag gjort var kvar. Så det var tydligt för mig i historiken exakt vad jag hade gjort och vilken commit jag revertat.
 
+Ett tredje och sista sätt att rulla tillbaka kod till ett tidigare tillstånd är med kommando “git restore”, som introducerades i git 2.23.0 och framåt. Det är ett alternativ till att använda “git reset”, och kan också kombineras med olika 
+flaggor beroende på vad man vill göra. En viktigt och tydlig skillnad mellan “git restore” och “git reset” är att “git restore” ej påverkar historiken av commits som “git reset” gör. Det “git restore” gör är att det byter ut versionen av en
+fil i ens nuvarande working directory till en tidigare version av den filen. “Git restore” är även mycket mer specifikt ön “git reset”, eftersom man anger vilken fil det är man vill restore. Detta gör det möjligt att ha mer kontroll över 
+arbetet.
+
