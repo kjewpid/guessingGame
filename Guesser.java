@@ -84,7 +84,7 @@ public Guesser(int low, int high){
       System.out.println("Is the number less than or equal to " +
                          middle + "?");
       String reply = getReply();
-      if("T".equals(reply)){
+      if("T".equalsIgnoreCase(reply)){
         // The number is less than or equal to middle
         // so we move down high to middle
         high = middle;
