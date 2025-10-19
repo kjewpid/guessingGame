@@ -90,3 +90,7 @@ Jag testade detta i min test-branch, och precis som när jag skulle demonstrerar
 kommando “git log —oneline” för att se vilken commit-version jag ville återgå till, och såg att det var för 4 commits sedan, alltså HEAD~4. Så med kommando “git restore —source HEAD~4 testfile.txt” så hömtade jag versionen från den commiten
 till mitt current working directory. Och för att se till att det gick som jag hoppades, så öppnade jag filen testfile.txt och kunde se att den såg ut som den andra versionen av filen, då jag bara lagt till en rad av text (första var när jag
 skapade filen och den var tom). Jag la sedan till filen till staging area, och commita med meddelande “restoring testfile.txt to early version”.
+
+Om man använder “git restore” utan flagga, så tar man bort ändringar från working directory och återställer filen till versionen som var med i den senaste commiten. Så det går alltså inte att använda detta om man först commitar, detta 
+kommando ska användas innan man commitat.
+
