@@ -52,3 +52,13 @@ Jag lägger till filen i staging area med kommando “git add cursed_file.txt”
 (som namnet tyder på). Jag använder kommando “git reset —hard HEAD~1” för att lösa detta. Jag får meddelandet att HEAD har flyttats tillbaka till en tidigare commit. För att säkerställa att problemet är löst, så använder jag kommando 
 “git status”. Där står det att inget finns i staging area, och jag kan andas ut lite. Men jag måste också vara säker på att filen är borta från mitt working directory, så jag använder kommando “ls” för att lista allt i katalogen. Och som 
 tur är så är cursed_file.txt helt borta, och problemet är löst!
+
+Git revert är ett annat sätt att gå tillbaka i historiken av commits. Till skillnad från andra kommandon så påverkar inte git revert historiken. Det betyder alltså att om man använder kommandot git revert HEAD~2, som exempel, så kommer inte
+HEAD~1 och HEAD att tas bort. Istället kommer en ny commit att läggas till i historiken (bli den senaste commiten) och “undo” det som gjordes i commit HEAD~2 (i detta fall). Detta är väldigt bra för integriteten av ens historik, samt i 
+kollaborationer med andra. Eftersom inte historiken försvinner så kan andra som man samarbetar med se vilka förändringar man har gjort, vilka fel man har löst osv. Skulle man t.ex. råka introducera en bugg i sin kod, som man inte upptäcker 
+förrän flera commits senare, så är git revert väldigt smart att använda. Istället för att manuellt behöva gå till problemet i koden, fixa det, och sen göra en ny commit, så kan man bara använda sig av git revert och “undo” buggen som gjordes
+för x-antal av commits sedan. Detta är i alla fall det som är menat att hända. Men det finns ett litet problem, och detta är merge-conflicts. Det kan uppstå merge-conflicts när man använder revert, och i så fall behöver ändå manuellt gå in 
+i filen och lösa problemet själv genom att välja vilken kod man vill behålla och vilken som ska tas bort. Konflikterna markeras i git av tecken som <<<<<<HEAD, ======, och >>>>>>>, så det är lätt att se var problemet uppstår. Men det kan ju
+kännas som att poängen med revert plötsligt blir ganska meningslös: tanken var ju att man skulle kunna använda git revert istället för att behöva göra allt manuellt. Men det finns ändå en fördel med git revert,
+och det är att historiken blir tydligare. Om man samarbetar med andra, så är det tydligt för dem i historiken vad det är man har reverted, vilken commit som man “tagit bort” i den nya commiten. Så det är fortfarande bra att använda revert 
+eftersom det gör det väldigt tydligt i historiken vad man gjort.
