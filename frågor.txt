@@ -39,3 +39,9 @@ file: secret_file.txt. Detta är precis vad jag förväntat mig, eftersom jag �
 Nu kan jag t.ex. lägga till den filen i .gitignore, så kommer inte git att säga att den är untracked längre eftersom git då ignorerar filen. Jag öppnar .gitignore-filen med nano, lägger till secret_file.txt längst ner, sparar och stänger 
 ner editorn. Därefter lägger jag till .gitignore i staging area och commitar, och slutligen använder jag kommando “git status” igen, och nu ser jag att det inte längre finns några untracked files, och inget kvar att commita.
 
+Den tredje och sista flaggan som jag kan använda med kommandot “reset” —hard. När man använder denna flaggan så flyttas HEAD tillbaka till en tidigare commit, och alla förändringar försvinner helt: både från staging area och working 
+directory. Denna flaggan ska man vara lite försiktig med, för om man resetar med denna så går det inte att ångra, man kan inte få tillbaka ändringarna alls (om man inte har backup). Så det är sällan rekommenderat att använda —hard. En 
+fördel skulle kunna vara ifall man gjort något riktigt fel och bara känner man vill börja om från början på ett snabbt och smidigt sätt. Om jag t.ex. har skapat en fil som jag sen inser är helt onödig eller som kanske bara förstörde hela 
+projektet, så kan jag använda —hard flaggan för att snabbt gå tillbaka och börja om från ruta 1/från den senaste commiten innan jag skapade den onödiga filen. Även om det fortfarande kan vara bra att ha det i historiken, att man skapade 
+filen och sen tog bort den, så finns det kanske tillfällen då det verkligen känns onödigt (kanske om man jobbar helt själv på ett projekt och det inte är så viktigt för någon annan än mig själv att kunna se historiken) och då kan ett 
+kommando som “git reset —hard” vara smidigt och effektivt att använda.
