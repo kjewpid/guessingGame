@@ -30,3 +30,12 @@ kommando “git log —oneline”, så ser jag att min senaste commit har meddel
 
 En annan flagga som kan kombineras med kommandot “git reset” är —mixed. Om man inte anger någon flagga, så är det denna som används by default. Med denna flaggan så flyttas HEAD tillbaka till en tidigare commit och ändringarna är kvar i 
 working directory, men inte i staging area! Detta kan vara bra ifall man råkat commita filer som inte skulle med. 
+
+Exempel —mixed:
+För att förklara detta i ett exempel, så skapar jag en ny fil “secret_file.txt”. Jag lägger sedan till allt i mitt working directory till staging area med kommandot “git add . “(vilket lägger till allt i den aktuella katalogen i staging 
+area). Innan jag har insett att jag har med filen secret_file.txt, så commitar jag. Sen inser jag mitt misstag: jag har råkat commita min hemliga fil!
+För att lösa detta så använder jag kommando “git reset —mixed HEAD~1”. För att vara säker på att det gick som jag ville, så använder jag kommando “git status” igen. Nu ser jag att inga filer är i staging area, men att jag har en untracked 
+file: secret_file.txt. Detta är precis vad jag förväntat mig, eftersom jag “ångrade” att jag commita filen men ändå har kvar den i mitt working directory. Git känner igen att det finns en fil som jag inte har commitat, min secret_file.txt. 
+Nu kan jag t.ex. lägga till den filen i .gitignore, så kommer inte git att säga att den är untracked längre eftersom git då ignorerar filen. Jag öppnar .gitignore-filen med nano, lägger till secret_file.txt längst ner, sparar och stänger 
+ner editorn. Därefter lägger jag till .gitignore i staging area och commitar, och slutligen använder jag kommando “git status” igen, och nu ser jag att det inte längre finns några untracked files, och inget kvar att commita.
+
