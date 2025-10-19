@@ -1,9 +1,11 @@
 #!/bin/bash
 
 NAME="Josephine_Jelkeby_Ginguene"
-mkdir "${NAME}_labb"
-cp *.java "${NAME}_labb"
-cd "${NAME}_labb"
+DIR="${NAME}_labb"
+
+mkdir "$DIR"
+cp *.java "$DIR"
+cd "$DIR"
 echo "Running game from $(pwd)"
 echo "compiling..."
 javac GuessingGame.java
