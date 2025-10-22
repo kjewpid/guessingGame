@@ -125,3 +125,11 @@ En stor fördel med att göra på detta sättet är att med merge så påverkas 
 samtidigt. Ifall någon råkar göra fel eller man behöver komma åt commits som funnits i en feature branch, så är detta fullt möjligt eftersom historiken är kvar. Ett problem är dock hur rörigt det 
 också lätt blir, speciellt om man jobbar i team. Det kan bli svårt att läsa av och förstå historiken när allting hoppar runt och överlappas, det kan vara svårt att förstå vad som händer var osv. 
 Även om man tänker att det borde vara ett plus att se vilka grenar som slogs samman och var dem gjorde det, så blir det tyvärr svårt i praktiken.
+
+För att förklara med lite exempel skapar jag en mapp merge-rebase och initierar ett repository. Jag skapar en fil (fil.txt), stagear och commitar. Jag skapar en ny fil (en-fil-till.txt), stagear 
+och commitar igen. Därefter skapar jag en ny branch med kommando “git branch feature”. Med “git switch feature” hoppar jag över till den branchen och skapar en tredje fil (file.txt) och stagear och 
+commitar även den. Sen hoppar jag tillbaka till main och använder kommando “ls”. Då kan jag se att dem enda två filerna jag har är “fil.txt” och “en-fil-till.txt”, ingen fil som heter “file.txt”. 
+Detta visar mig att brancherna fungerar som dem ska. Jag öppnar fil.txt med nano och lägger till ordet “hej”. Jag lägger till i staging area med “git add fil.txt”, commitar igen, och nu testar jag att 
+merga dem två brancherna. Jag använder kommando “git merge feature main” för att merge main till feature. Jag får inga meddelanden om att någon konflikt uppstod, precis som förväntat eftersom jag inte 
+gjort ändringar i samma fil i de två brancherna (vilket är det som ofta leder till konflikter). För att säkerställa att det gick bra så använder jag kommando “git log —oneline” för att se historiken 
+av commits och kan då se att det skapats en ny merge-commit längst upp, vilket representerar mergen jag precis gjorde.
