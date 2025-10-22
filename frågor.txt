@@ -150,10 +150,17 @@ jobba lite där, och slutligen använda rebase för att integrera brancherna, s�
 att jag skapade en fil i feature-branch, så ser det i historiken ut som att jag skapade filen efter ändringarna i main eftersom commitsen i feature-branchen lades “på toppen av” historiken i main. 
 
 För att förklara rebase med ett exempel, så återskapar jag ovan scenario i mitt repository. Jag hoppar över till min feature branch med “git switch feature” och skapar en fil, dog.txt. Jag stagear
- och commitar filen. Därefter öppnar jag filen med nano, lägger till texten “dog”, sparar, stagear och commitar filen igen. Efter detta hoppar jag över till min main branch och öppnar filen fil.txt 
- igen och lägger till lite mer text i den igen, stagear och commitar. Efter allt detta är jag redo att försöka använda rebase. För att använda kommandot, börjar jag med att switch branch till 
- feature-branchen igen, för det är commitsen i den som jag vill ska integreras med main-branchen. Därefter använder jag kommando “git rebase main”. Detta är vad som skapar nya commits med samma 
- innehåll som motsvarande commit i feature-branchen innehållerr, och lägger dem nya commitsen “på toppen av” commitsen i main. Sen hoppar jag tillbaka till main-branchen och slutför integreringen 
- med kommando “git merge feature”. Eftersom dem nya commitsen från feature lades på toppen av commitsen i main, så sker en fast forward merge: ingen ny commit skapas. För att säkerställa att allt 
- gick som det skulle så använder jag git log —oneline. Då ser jag att dem senaste två commitsen är att jag skapade en fil “dog.txt” och att jag la till text i dog.txt. Efter dessa två så står det att 
- jag ändrade filen fil.txt i main. Jag vet ju att jag jobbade i fil.txt efter att jag skapat och lagt till text i dog.txt, men i commit historiken ser jag inte detta.
+och commitar filen. Därefter öppnar jag filen med nano, lägger till texten “dog”, sparar, stagear och commitar filen igen. Efter detta hoppar jag över till min main branch och öppnar filen fil.txt 
+igen och lägger till lite mer text i den igen, stagear och commitar. Efter allt detta är jag redo att försöka använda rebase. För att använda kommandot, börjar jag med att switch branch till 
+feature-branchen igen, för det är commitsen i den som jag vill ska integreras med main-branchen. Därefter använder jag kommando “git rebase main”. Detta är vad som skapar nya commits med samma 
+innehåll som motsvarande commit i feature-branchen innehållerr, och lägger dem nya commitsen “på toppen av” commitsen i main. Sen hoppar jag tillbaka till main-branchen och slutför integreringen 
+med kommando “git merge feature”. Eftersom dem nya commitsen från feature lades på toppen av commitsen i main, så sker en fast forward merge: ingen ny commit skapas. För att säkerställa att allt 
+gick som det skulle så använder jag git log —oneline. Då ser jag att dem senaste två commitsen är att jag skapade en fil “dog.txt” och att jag la till text i dog.txt. Efter dessa två så står det att 
+jag ändrade filen fil.txt i main. Jag vet ju att jag jobbade i fil.txt efter att jag skapat och lagt till text i dog.txt, men i commit historiken ser jag inte detta.
+
+Merge vs Rebase
+Så hur vet man vad man ska använda för att integrera sina brancher? Både merge och rebase har sina för och nackdelar, och att överväga dessa kan hjälpa till att välja rätt. Merge är det säkraste 
+alternativet eftersom det bevarar historiken och dem originella commitsen med deras ursprungliga hash ID och timestamps. Med merge så kan man vara säker på att ingenting av misstag kommer försvinna 
+eller förstöra för någon annan man jobbar med, för det går alltid att gå tillbaka och leta ut commits i historiken. Å andra sidan blir det väldigt lätt rörigt när man använder merge. Om man jobbar i 
+ett team så dröjer det inte alltid så länge innan det blir svårt att läsa av och tolka historiken. Med “git log —oneline —graph” så kan man se hur brancherna integreras och sticker ut från varandra, 
+och om man använder merge mycket kan denna graf bli ganska svårläst. 
