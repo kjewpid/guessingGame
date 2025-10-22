@@ -148,3 +148,12 @@ main-branchen. Istället för att en ny commit skapas som representerar integrer
 hash ID, och läggs efter commitsen i master branchen.  Detta innebär att historiken ändras. Skulle jag jobba i min feature branch och skapa en ny fil, och sen hoppa tillbaka till min main branch och 
 jobba lite där, och slutligen använda rebase för att integrera brancherna, så skulle commitsen i feature-branchen läggas efter commitsen jag gjort i main. Så även om jag gjorde ändringar i main EFTER 
 att jag skapade en fil i feature-branch, så ser det i historiken ut som att jag skapade filen efter ändringarna i main eftersom commitsen i feature-branchen lades “på toppen av” historiken i main. 
+
+För att förklara rebase med ett exempel, så återskapar jag ovan scenario i mitt repository. Jag hoppar över till min feature branch med “git switch feature” och skapar en fil, dog.txt. Jag stagear
+ och commitar filen. Därefter öppnar jag filen med nano, lägger till texten “dog”, sparar, stagear och commitar filen igen. Efter detta hoppar jag över till min main branch och öppnar filen fil.txt 
+ igen och lägger till lite mer text i den igen, stagear och commitar. Efter allt detta är jag redo att försöka använda rebase. För att använda kommandot, börjar jag med att switch branch till 
+ feature-branchen igen, för det är commitsen i den som jag vill ska integreras med main-branchen. Därefter använder jag kommando “git rebase main”. Detta är vad som skapar nya commits med samma 
+ innehåll som motsvarande commit i feature-branchen innehållerr, och lägger dem nya commitsen “på toppen av” commitsen i main. Sen hoppar jag tillbaka till main-branchen och slutför integreringen 
+ med kommando “git merge feature”. Eftersom dem nya commitsen från feature lades på toppen av commitsen i main, så sker en fast forward merge: ingen ny commit skapas. För att säkerställa att allt 
+ gick som det skulle så använder jag git log —oneline. Då ser jag att dem senaste två commitsen är att jag skapade en fil “dog.txt” och att jag la till text i dog.txt. Efter dessa två så står det att 
+ jag ändrade filen fil.txt i main. Jag vet ju att jag jobbade i fil.txt efter att jag skapat och lagt till text i dog.txt, men i commit historiken ser jag inte detta.
