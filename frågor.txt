@@ -101,4 +101,7 @@ För att återigen demonstrera, så lägger jag till en massa tecken och text i 
 bara kommando “git restore testfile.txt”. Därefter öppnar jag filen, och ser att all text och alla tecken som jag lagt till är borttagna, och testfile.txt har återgått till den senaste versionen i commit historiken. Väldigt mycket 
 effektivare och smidigare än om jag gått in och ändrat allt manuellt.
 
+Merge & Rebase
+Om man har jobbat i en feature-branch och vill integrera det man har utvecklat i den i sin main-branch så finns det lite olika sätt att göra detta på. Man kan t.ex. använda merge eller rebase; båda uppfyller samma syfte, de slår ihop olika 
+grenar, men sätter det gör detta på skiljer sig väldigt mycket.
 
