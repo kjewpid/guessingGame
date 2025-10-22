@@ -173,3 +173,8 @@ Tänk om jag och en medarbetare båda använder “git pull” för att hämta s
 “git rebase” lokalt innan jag använder “git push —force” för att pusha ändringarna till vårat gemesamma remote repository. Men när min medarbetare försöker pusha sina ändringar till vårat remote repo, 
 så uppstår det ett allvarligt problem. Eftersom jag använde rebase så skrevs historiken om, vilket innebär att commitsen som min medarbetare jobbade vidare på inte längre existerar! Detta är 
 anledningen till att rebase är så osäkert att använda om man jobbar i team, och varför merge ofta anses vara ett bättre alternativ. 
+
+Så svaret på frågan jag ställde i början av denna diskussion, om man ska välja merge eller rebase, är helt enkelt att det beror på situationen. Om man jobbar med andra i ett remote repository så är 
+det säkraste alternativet alltid merge, eftersom historiken är så värdefull. Men rebase kan vara väldigt användbart om man vill rensa och städa upp historiken lokalt. Rebase kan vara bra i team med 
+såklart, men i så fall är det väldigt viktigt att ha en öppen och tydlig kommunikation så att det inte uppstår några problem. Att ha en renare historik kan ha sina fördelar även i team men då måste 
+alla vara överens om det.
