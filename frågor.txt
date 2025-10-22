@@ -143,3 +143,8 @@ jag för att slutföra merge. För att säkerställa att det gick som jag ville,
 merge jag precis gjorde. 
 
 Rebase
+Rebase är ett annat sätt att integera brancher, men det skiljer sig en del från hur merge gör det. Till skillnad från merge, så läggs commitsen i feature-branchen “på toppen av” commitsen i 
+main-branchen. Istället för att en ny commit skapas som representerar integreringen som när man använder merge, så kopieras innehållet i commitsen i feature-branchen och sparas i nya commits med nya 
+hash ID, och läggs efter commitsen i master branchen.  Detta innebär att historiken ändras. Skulle jag jobba i min feature branch och skapa en ny fil, och sen hoppa tillbaka till min main branch och 
+jobba lite där, och slutligen använda rebase för att integrera brancherna, så skulle commitsen i feature-branchen läggas efter commitsen jag gjort i main. Så även om jag gjorde ändringar i main EFTER 
+att jag skapade en fil i feature-branch, så ser det i historiken ut som att jag skapade filen efter ändringarna i main eftersom commitsen i feature-branchen lades “på toppen av” historiken i main. 
