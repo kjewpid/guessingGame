@@ -1,3 +1,5 @@
+- Försöker sikta på VG -
+
 Push är ett kommando som används för att ladda upp commits man gjort i sitt lokala repository till ett remote repository på t.ex. github. 
 
 Pull är kommandot som används för att hämta commits från ett remote repository och merge dem med sina lokala filer/repository.  Pull är faktisk ett kommando som kombinerar två andra kommandon: fetch och merge. Om man vill ladda ner commits
@@ -98,3 +100,5 @@ Exempel restore:
 För att återigen demonstrera, så lägger jag till en massa tecken och text i filen testfile.txt, men ångar mig och vill gå tillbaka till hur filen var innan. Istället för att manuellt gå in i filen och radera rad för rad, så använder jag 
 bara kommando “git restore testfile.txt”. Därefter öppnar jag filen, och ser att all text och alla tecken som jag lagt till är borttagna, och testfile.txt har återgått till den senaste versionen i commit historiken. Väldigt mycket 
 effektivare och smidigare än om jag gått in och ändrat allt manuellt.
+
+
