@@ -133,3 +133,12 @@ Detta visar mig att brancherna fungerar som dem ska. Jag öppnar fil.txt med nan
 merga dem två brancherna. Jag använder kommando “git merge feature main” för att merge main till feature. Jag får inga meddelanden om att någon konflikt uppstod, precis som förväntat eftersom jag inte 
 gjort ändringar i samma fil i de två brancherna (vilket är det som ofta leder till konflikter). För att säkerställa att det gick bra så använder jag kommando “git log —oneline” för att se historiken 
 av commits och kan då se att det skapats en ny merge-commit längst upp, vilket representerar mergen jag precis gjorde.
+
+Ett annat exempel jag skulle vilja förklara är ifall det skulle uppstå en konflikt. Jag gör lite ändringar i filen fil.txt igen och lägger återigen till lite text, denna gång “idag mås det bra”. 
+Därefter switchar jag branch till feature, och öppnar upp fil.txt även där. I filen kan jag inte se det jag precis la till i main-branchen, vilket är normalt eftersom det var något jag la till i en 
+annan branch och jag inte har merge dem än. Jag lägger till ett “hej” till och stänger ner, stagear, commitar. Därefter testar jag att merge igen, på samma sätt som förrut. Denna gången så får jag ett 
+meddelande att det har uppstått en konflikt! Mer specifikt står det att det har uppstått en konflikt i filen “fil.txt”, och att jag måste hantera det innan merge kan fortsätta. För att lösa problemet 
+så öppnar jag filen fil.txt och tar bort markeringarna. Jag väljer att låta all annan text vara kvar. Sen använder jag “git add fil.txt” för att markera att jag löst konflikten. Och slutligen commitar 
+jag för att slutföra merge. För att säkerställa att det gick som jag ville, så använder jag kommando “git log —oneline” igen och som förväntat så finns det en ny commit längst upp som representerar 
+merge jag precis gjorde. 
+
