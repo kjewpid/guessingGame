@@ -142,3 +142,4 @@ så öppnar jag filen fil.txt och tar bort markeringarna. Jag väljer att låta 
 jag för att slutföra merge. För att säkerställa att det gick som jag ville, så använder jag kommando “git log —oneline” igen och som förväntat så finns det en ny commit längst upp som representerar 
 merge jag precis gjorde. 
 
+Rebase
