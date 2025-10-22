@@ -164,3 +164,12 @@ alternativet eftersom det bevarar historiken och dem originella commitsen med de
 eller förstöra för någon annan man jobbar med, för det går alltid att gå tillbaka och leta ut commits i historiken. Å andra sidan blir det väldigt lätt rörigt när man använder merge. Om man jobbar i 
 ett team så dröjer det inte alltid så länge innan det blir svårt att läsa av och tolka historiken. Med “git log —oneline —graph” så kan man se hur brancherna integreras och sticker ut från varandra, 
 och om man använder merge mycket kan denna graf bli ganska svårläst. 
+
+Med rebase blir grafen mycket tydligare, alla commits visas i en enda lista, med en commit på varje rad. Mycket renare och mer lättläst än merge-historiken. Men denna rena historik har som sagt ett 
+pris: att historiken skrivs om. Som jag nämnt tidigare så skapas nya commits när man använder rebase. De må ha exakt samma kod och innehåll som commitsen i branchen, men de har nya hash ID och 
+tidslinjen skrivs om. Detta kan orsaka en hel del problem om man jobbar i team, att förlora historiken kan ha grova konsekvenser.
+
+Tänk om jag och en medarbetare båda använder “git pull” för att hämta samma branch till våra lokala repositories och vi båda jobbar på branchen på varsitt håll. Jag blir klar först och använder 
+“git rebase” lokalt innan jag använder “git push —force” för att pusha ändringarna till vårat gemesamma remote repository. Men när min medarbetare försöker pusha sina ändringar till vårat remote repo, 
+så uppstår det ett allvarligt problem. Eftersom jag använde rebase så skrevs historiken om, vilket innebär att commitsen som min medarbetare jobbade vidare på inte längre existerar! Detta är 
+anledningen till att rebase är så osäkert att använda om man jobbar i team, och varför merge ofta anses vara ett bättre alternativ. 
