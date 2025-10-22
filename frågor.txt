@@ -120,3 +120,8 @@ Merge kan gå till på lite olika sätt, t.ex. finns det three-way-merge eller f
 den med main-branchen, så kan man använda kommando “git merge feature-branch main” för att slå ihop grenarna. Om man har jobbat i båda feature-branch och main så sker en three-way-merge, vilket 
 innebär att det skapas en ny commit i main som innehåller allt som både feature-branchen innehåller och det som main branchen innehåller. Ifall det förekommer en konflikt får man gå in och lösa det 
 i filen/filarna manuellt genom att ta bort markeringarna som visar var problemet uppstår och välja vad man vill ha kvar och inte. 
+
+En stor fördel med att göra på detta sättet är att med merge så påverkas inte historiken i brancherna man mergar alls, vilket kan vara ett stort plus ifall man är flera som jobbar på samma projekt 
+samtidigt. Ifall någon råkar göra fel eller man behöver komma åt commits som funnits i en feature branch, så är detta fullt möjligt eftersom historiken är kvar. Ett problem är dock hur rörigt det 
+också lätt blir, speciellt om man jobbar i team. Det kan bli svårt att läsa av och förstå historiken när allting hoppar runt och överlappas, det kan vara svårt att förstå vad som händer var osv. 
+Även om man tänker att det borde vara ett plus att se vilka grenar som slogs samman och var dem gjorde det, så blir det tyvärr svårt i praktiken.
