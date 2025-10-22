@@ -115,3 +115,4 @@ Merge & Rebase
 Om man har jobbat i en feature-branch och vill integrera det man har utvecklat i den i sin main-branch så finns det lite olika sätt att göra detta på. Man kan t.ex. använda merge eller rebase; 
 båda uppfyller samma syfte, de slår ihop olika grenar, men sätter det gör detta på skiljer sig väldigt mycket.
 
+Merge
