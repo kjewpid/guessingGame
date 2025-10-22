@@ -2,106 +2,116 @@
 
 Push är ett kommando som används för att ladda upp commits man gjort i sitt lokala repository till ett remote repository på t.ex. github. 
 
-Pull är kommandot som används för att hämta commits från ett remote repository och merge dem med sina lokala filer/repository.  Pull är faktisk ett kommando som kombinerar två andra kommandon: fetch och merge. Om man vill ladda ner commits
-till sitt repository men inte merge dem direkt utan kolla på dem först, så kan man använda kommandot först. Detta kan vara bra om man t.ex. har ett team som tillsammans jobbar på ett program och pushar commits till ett remote repository; 
-kanske är det bra att kolla vad andra har pushat innan man merge med sina lokala filer för att säkerställa att det kommer gå bra. Efter att ha fetch:at så kan man använda kommandot merge, vilket synkar remote commits med ens lokala
+Pull är kommandot som används för att hämta commits från ett remote repository och merge dem med sina lokala filer/repository.  Pull är faktisk ett kommando som kombinerar två andra kommandon: 
+fetch och merge. Om man vill ladda ner commitstill sitt repository men inte merge dem direkt utan kolla på dem först, så kan man använda kommandot först. Detta kan vara bra om man t.ex. har ett
+team som tillsammans jobbar på ett program och pushar commits till ett remote repository; kanske är det bra att kolla vad andra har pushat innan man merge med sina lokala filer för att säkerställa
+att det kommer gå bra. Efter att ha fetch:at så kan man använda kommandot merge, vilket synkar remote commits med ens lokala repository. 
+
+Log (git log) är ett kommando som används för att visa historiken av commits. Varje commit identifieras av en unik hash, som består av en massa tecken. Om man använder flaggan —oneline så kan man
+få en kortare identifierande sträng som endast består av 7 tecken (checksum). 
+
+Status är ett kommando som används för att rapportera den nuvarande statusen i working directory och staging area. Staging area är där filer läggs till när man använder kommandot git add, det är 
+dem filerna man vill ha med i nästa commit. Status-kommandot visar även om det finns untracked files, samt vilken branch man befinner sig på och om den är up to date med ett eventuellt remote 
 repository. 
 
-Log (git log) är ett kommando som används för att visa historiken av commits. Varje commit identifieras av en unik hash, som består av en massa tecken. Om man använder flaggan —oneline så kan man få en kortare identifierande sträng som endast
-består av 7 tecken (checksum). 
-
-Status är ett kommando som används för att rapportera den nuvarande statusen i working directory och staging area. Staging area är där filer läggs till när man använder kommandot git add, det är dem filerna man vill ha med i nästa commit.
-Status-kommandot visar även om det finns untracked files, samt vilken branch man befinner sig på och om den är up to date med ett eventuellt remote repository. 
-
-Brancher i git är separata utvecklingslinjer som är användbara på flera sätt. När man skapar en branch så skapas en kopia av ens current repository som sparas i en separat utvecklingslinje(branch), och när man jobbar i den så påverkas inte 
-main/master branchen. Skulle man t.ex. skapa en fil i en branch, så kommer den filen inte att existera i ens main/master branch (om man inte mergar dem). Detta är som sagt väldigt användbart. Om man t.ex. vill testa en ny idé utan att råka
-förstöra det man jobbat på hittils, så kan man bara skapa en ny branch och testa sin idé säkert där. Skulle det inte gå som man hade tänkt, så kan man bara återgå till versionen som är kvar i main/master branchen. Brancher är även användbart
-om man vill jobba på flera versioner av ens projekt pararellt. Det är vanligt att använda sig av feature-brancher, alltså brancher som används för att tillföra nya funktioner. Bugfix brancher används för felsökning och release branches är 
-en sista vanlig typ av branch, som används för att förbereda release av ett program. 
+Brancher i git är separata utvecklingslinjer som är användbara på flera sätt. När man skapar en branch så skapas en kopia av ens current repository som sparas i en separat utvecklingslinje(branch), 
+och när man jobbar i den så påverkas inte main/master branchen. Skulle man t.ex. skapa en fil i en branch, så kommer den filen inte att existera i ens main/master branch (om man inte mergar dem). 
+Detta är som sagt väldigt användbart. Om man t.ex. vill testa en ny idé utan att råka förstöra det man jobbat på hittils, så kan man bara skapa en ny branch och testa sin idé säkert där. Skulle det 
+inte gå som man hade tänkt, så kan man bara återgå till versionen som är kvar i main/master branchen. Brancher är även användbart om man vill jobba på flera versioner av ens projekt pararellt. Det 
+är vanligt att använda sig av feature-brancher, alltså brancher som används för att tillföra nya funktioner. Bugfix brancher används för felsökning och release branches är en sista vanlig typ av 
+branch, som används för att förbereda release av ett program. 
 
 Git reset är ett sätt för att gå tillbaka i historiken. Reset kan påverka historiken, men det beror på vilken flagga man kombinerar kommandot med.
 
-Om man använder flaggan —soft, så flyttas HEAD tillbaka till en tidigare commit och ändringarna är kvar i staging area samt i working directory. Detta betyder alltså att man kan commita exakt samma ändringar igen, man måste inte 
-nödvändigtvis ändra något. En fördel med detta är att man kan t.ex. rätta till något som blev fel när man commita, t.ex. meddelandet. För att visa hur det fungerar så skapar jag en branch i mitt projekt, där jag kan testa olika reset 
-kommandon utan att det påverkar main branchen.
+Om man använder flaggan —soft, så flyttas HEAD tillbaka till en tidigare commit och ändringarna är kvar i staging area samt i working directory. Detta betyder alltså att man kan commita exakt samma 
+ändringar igen, man måste inte nödvändigtvis ändra något. En fördel med detta är att man kan t.ex. rätta till något som blev fel när man commita, t.ex. meddelandet. För att visa hur det fungerar så 
+skapar jag en branch i mitt projekt, där jag kan testa olika reset kommandon utan att det påverkar main branchen.
 
 Exempel soft:
-Skapar en ny fil, testfile.txt (i branchen test_branch) och commitar med meddelandet “creating testfilee.txt”. Men så inser jag att mitt meddelande var felstavat! Då använder jag kommando “git reset —soft HEAD~1”. Då flyttas HEAD tillbaka 
-1 steg, och med kommando “git status”, så ser jag att min fil är i staging area och working directory, och redo att bli commitad igen. Jag commitar igen, denna gång med ett korrekt meddelande “creating testfile.txt”. Om jag nu använder 
-kommando “git log —oneline”, så ser jag att min senaste commit har meddelande “creating testfile.txt”, alltså det rättade meddelandet.
+Skapar en ny fil, testfile.txt (i branchen test_branch) och commitar med meddelandet “creating testfilee.txt”. Men så inser jag att mitt meddelande var felstavat! Då använder jag kommando 
+“git reset —soft HEAD~1”. Då flyttas HEAD tillbaka 1 steg, och med kommando “git status”, så ser jag att min fil är i staging area och working directory, och redo att bli commitad igen. Jag commitar 
+igen, denna gång med ett korrekt meddelande “creating testfile.txt”. Om jag nu använder kommando “git log —oneline”, så ser jag att min senaste commit har meddelande “creating testfile.txt”, alltså 
+det rättade meddelandet.
 
-En annan flagga som kan kombineras med kommandot “git reset” är —mixed. Om man inte anger någon flagga, så är det denna som används by default. Med denna flaggan så flyttas HEAD tillbaka till en tidigare commit och ändringarna är kvar i 
-working directory, men inte i staging area! Detta kan vara bra ifall man råkat commita filer som inte skulle med. 
+En annan flagga som kan kombineras med kommandot “git reset” är —mixed. Om man inte anger någon flagga, så är det denna som används by default. Med denna flaggan så flyttas HEAD tillbaka till en 
+tidigare commit och ändringarna är kvar i working directory, men inte i staging area! Detta kan vara bra ifall man råkat commita filer som inte skulle med. 
 
 Exempel —mixed:
-För att förklara detta i ett exempel, så skapar jag en ny fil “secret_file.txt”. Jag lägger sedan till allt i mitt working directory till staging area med kommandot “git add . “(vilket lägger till allt i den aktuella katalogen i staging 
-area). Innan jag har insett att jag har med filen secret_file.txt, så commitar jag. Sen inser jag mitt misstag: jag har råkat commita min hemliga fil!
-För att lösa detta så använder jag kommando “git reset —mixed HEAD~1”. För att vara säker på att det gick som jag ville, så använder jag kommando “git status” igen. Nu ser jag att inga filer är i staging area, men att jag har en untracked 
-file: secret_file.txt. Detta är precis vad jag förväntat mig, eftersom jag “ångrade” att jag commita filen men ändå har kvar den i mitt working directory. Git känner igen att det finns en fil som jag inte har commitat, min secret_file.txt. 
-Nu kan jag t.ex. lägga till den filen i .gitignore, så kommer inte git att säga att den är untracked längre eftersom git då ignorerar filen. Jag öppnar .gitignore-filen med nano, lägger till secret_file.txt längst ner, sparar och stänger 
-ner editorn. Därefter lägger jag till .gitignore i staging area och commitar, och slutligen använder jag kommando “git status” igen, och nu ser jag att det inte längre finns några untracked files, och inget kvar att commita.
+För att förklara detta i ett exempel, så skapar jag en ny fil “secret_file.txt”. Jag lägger sedan till allt i mitt working directory till staging area med kommandot “git add . “(vilket lägger till 
+allt i den aktuella katalogen i staging area). Innan jag har insett att jag har med filen secret_file.txt, så commitar jag. Sen inser jag mitt misstag: jag har råkat commita min hemliga fil!
+För att lösa detta så använder jag kommando “git reset —mixed HEAD~1”. För att vara säker på att det gick som jag ville, så använder jag kommando “git status” igen. Nu ser jag att inga filer är i 
+staging area, men att jag har en untracked file: secret_file.txt. Detta är precis vad jag förväntat mig, eftersom jag “ångrade” att jag commita filen men ändå har kvar den i mitt working directory. 
+Git känner igen att det finns en fil som jag inte har commitat, min secret_file.txt. Nu kan jag t.ex. lägga till den filen i .gitignore, så kommer inte git att säga att den är untracked längre eftersom
+git då ignorerar filen. Jag öppnar .gitignore-filen med nano, lägger till secret_file.txt längst ner, sparar och stänger ner editorn. Därefter lägger jag till .gitignore i staging area och commitar, 
+och slutligen använder jag kommando “git status” igen, och nu ser jag att det inte längre finns några untracked files, och inget kvar att commita.
 
-Den tredje och sista flaggan som jag kan använda med kommandot “reset” —hard. När man använder denna flaggan så flyttas HEAD tillbaka till en tidigare commit, och alla förändringar försvinner helt: både från staging area och working 
-directory. Denna flaggan ska man vara lite försiktig med, för om man resetar med denna så går det inte att ångra, man kan inte få tillbaka ändringarna alls (om man inte har backup). Så det är sällan rekommenderat att använda —hard. En 
-fördel skulle kunna vara ifall man gjort något riktigt fel och bara känner man vill börja om från början på ett snabbt och smidigt sätt. Om jag t.ex. har skapat en fil som jag sen inser är helt onödig eller som kanske bara förstörde hela 
-projektet, så kan jag använda —hard flaggan för att snabbt gå tillbaka och börja om från ruta 1/från den senaste commiten innan jag skapade den onödiga filen. Även om det fortfarande kan vara bra att ha det i historiken, att man skapade 
-filen och sen tog bort den, så finns det kanske tillfällen då det verkligen känns onödigt (kanske om man jobbar helt själv på ett projekt och det inte är så viktigt för någon annan än mig själv att kunna se historiken) och då kan ett 
-kommando som “git reset —hard” vara smidigt och effektivt att använda.
+Den tredje och sista flaggan som jag kan använda med kommandot “reset” —hard. När man använder denna flaggan så flyttas HEAD tillbaka till en tidigare commit, och alla förändringar försvinner helt: 
+både från staging area och working directory. Denna flaggan ska man vara lite försiktig med, för om man resetar med denna så går det inte att ångra, man kan inte få tillbaka ändringarna alls (om man 
+inte har backup). Så det är sällan rekommenderat att använda —hard. En fördel skulle kunna vara ifall man gjort något riktigt fel och bara känner man vill börja om från början på ett snabbt och smidigt 
+sätt. Om jag t.ex. har skapat en fil som jag sen inser är helt onödig eller som kanske bara förstörde hela projektet, så kan jag använda —hard flaggan för att snabbt gå tillbaka och börja om från 
+ruta 1/från den senaste commiten innan jag skapade den onödiga filen. Även om det fortfarande kan vara bra att ha det i historiken, att man skapade filen och sen tog bort den, så finns det kanske 
+tillfällen då det verkligen känns onödigt (kanske om man jobbar helt själv på ett projekt och det inte är så viktigt för någon annan än mig själv att kunna se historiken) och då kan ett kommando som 
+“git reset —hard” vara smidigt och effektivt att använda.
 
 Exempel —hard:
 För att visa hur det fungerar i ett exempel, så skapar jag filen “cursed_file.txt”. (I scenariot är jag väldigt nyvaken och inte fått i mig mitt morgonkaffe än)
-Jag lägger till filen i staging area med kommando “git add cursed_file.txt” och commitar (git commit -m “dangerous file”). Efter en stark kopp kaffe inser jag äntligen hur dumt det var av mig att commita och ens skapa en så farlig fil 
-(som namnet tyder på). Jag använder kommando “git reset —hard HEAD~1” för att lösa detta. Jag får meddelandet att HEAD har flyttats tillbaka till en tidigare commit. För att säkerställa att problemet är löst, så använder jag kommando 
-“git status”. Där står det att inget finns i staging area, och jag kan andas ut lite. Men jag måste också vara säker på att filen är borta från mitt working directory, så jag använder kommando “ls” för att lista allt i katalogen. Och som 
-tur är så är cursed_file.txt helt borta, och problemet är löst!
+Jag lägger till filen i staging area med kommando “git add cursed_file.txt” och commitar (git commit -m “dangerous file”). Efter en stark kopp kaffe inser jag äntligen hur dumt det var av mig att 
+commita och ens skapa en så farlig fil (som namnet tyder på). Jag använder kommando “git reset —hard HEAD~1” för att lösa detta. Jag får meddelandet att HEAD har flyttats tillbaka till en tidigare 
+commit. För att säkerställa att problemet är löst, så använder jag kommando “git status”. Där står det att inget finns i staging area, och jag kan andas ut lite. Men jag måste också vara säker på att 
+filen är borta från mitt working directory, så jag använder kommando “ls” för att lista allt i katalogen. Och som tur är så är cursed_file.txt helt borta, och problemet är löst!
 
-Git revert är ett annat sätt att gå tillbaka i historiken av commits. Till skillnad från andra kommandon så påverkar inte git revert historiken. Det betyder alltså att om man använder kommandot git revert HEAD~2, som exempel, så kommer inte
-HEAD~1 och HEAD att tas bort. Istället kommer en ny commit att läggas till i historiken (bli den senaste commiten) och “undo” det som gjordes i commit HEAD~2 (i detta fall). Detta är väldigt bra för integriteten av ens historik, samt i 
-kollaborationer med andra. Eftersom inte historiken försvinner så kan andra som man samarbetar med se vilka förändringar man har gjort, vilka fel man har löst osv. Skulle man t.ex. råka introducera en bugg i sin kod, som man inte upptäcker 
-förrän flera commits senare, så är git revert väldigt smart att använda. Istället för att manuellt behöva gå till problemet i koden, fixa det, och sen göra en ny commit, så kan man bara använda sig av git revert och “undo” buggen som gjordes
-för x-antal av commits sedan. Detta är i alla fall det som är menat att hända. Men det finns ett litet problem, och detta är merge-conflicts. Det kan uppstå merge-conflicts när man använder revert, och i så fall behöver ändå manuellt gå in 
-i filen och lösa problemet själv genom att välja vilken kod man vill behålla och vilken som ska tas bort. Konflikterna markeras i git av tecken som <<<<<<HEAD, ======, och >>>>>>>, så det är lätt att se var problemet uppstår. Men det kan ju
-kännas som att poängen med revert plötsligt blir ganska meningslös: tanken var ju att man skulle kunna använda git revert istället för att behöva göra allt manuellt. Men det finns ändå en fördel med git revert,
-och det är att historiken blir tydligare. Om man samarbetar med andra, så är det tydligt för dem i historiken vad det är man har reverted, vilken commit som man “tagit bort” i den nya commiten. Så det är fortfarande bra att använda revert 
-eftersom det gör det väldigt tydligt i historiken vad man gjort.
+Git revert är ett annat sätt att gå tillbaka i historiken av commits. Till skillnad från andra kommandon så påverkar inte git revert historiken. Det betyder alltså att om man använder kommandot git 
+revert HEAD~2, som exempel, så kommer inteHEAD~1 och HEAD att tas bort. Istället kommer en ny commit att läggas till i historiken (bli den senaste commiten) och “undo” det som gjordes i commit HEAD~2
+(i detta fall). Detta är väldigt bra för integriteten av ens historik, samt i kollaborationer med andra. Eftersom inte historiken försvinner så kan andra som man samarbetar med se vilka förändringar 
+man har gjort, vilka fel man har löst osv. Skulle man t.ex. råka introducera en bugg i sin kod, som man inte upptäcker förrän flera commits senare, så är git revert väldigt smart att använda. Istället
+för att manuellt behöva gå till problemet i koden, fixa det, och sen göra en ny commit, så kan man bara använda sig av git revert och “undo” buggen som gjordes för x-antal av commits sedan. Detta är i
+alla fall det som är menat att hända. Men det finns ett litet problem, och detta är merge-conflicts. Det kan uppstå merge-conflicts när man använder revert, och i så fall behöver ändå manuellt gå in 
+i filen och lösa problemet själv genom att välja vilken kod man vill behålla och vilken som ska tas bort. Konflikterna markeras i git av tecken som <<<<<<HEAD, ======, och >>>>>>>, så det är lätt att 
+se var problemet uppstår. Men det kan ju kännas som att poängen med revert plötsligt blir ganska meningslös: tanken var ju att man skulle kunna använda git revert istället för att behöva göra allt 
+manuellt. Men det finns ändå en fördel med git revert, och det är att historiken blir tydligare. Om man samarbetar med andra, så är det tydligt för dem i historiken vad det är man har reverted, 
+vilken commit som man “tagit bort” i den nya commiten. Så det är fortfarande bra att använda revert eftersom det gör det väldigt tydligt i historiken vad man gjort.
 
 Exempel revert:
-För att demonstrera detta, så la jag till lite text i min fill testfile.txt, i några omgångar. Skrev en mening, commita, skrev en mening till, commita igen osv.. Efter att ha gjort detta några gånger, så använde jag “git log —oneline” för 
-att kunna kopiera den unika checksum till commiten jag ville reverta (jag valde den andra commiten av att lägga till text). Jag kopierade checksum, och använde sedan kommando “git revert <checksum>”, och som jag förväntat mig uppstod en 
-konflikt. Så jag gick in i filen, letade fram tecknen som visade var problemet var, och bestämde manuellt vad jag ville behålla och inte. Därefter stängde jag ner filen, och använde kommando “git log —oneline” igen. Nu kunde jag se att min 
-senaste commit var en revert av en tidigare commit, och alla andra commits jag gjort var kvar. Så det var tydligt för mig i historiken exakt vad jag hade gjort och vilken commit jag revertat.
+För att demonstrera detta, så la jag till lite text i min fill testfile.txt, i några omgångar. Skrev en mening, commita, skrev en mening till, commita igen osv.. Efter att ha gjort detta några gånger,
+så använde jag “git log —oneline” för att kunna kopiera den unika checksum till commiten jag ville reverta (jag valde den andra commiten av att lägga till text). Jag kopierade checksum, och använde 
+sedan kommando “git revert <checksum>”, och som jag förväntat mig uppstod en konflikt. Så jag gick in i filen, letade fram tecknen som visade var problemet var, och bestämde manuellt vad jag ville 
+behålla och inte. Därefter stängde jag ner filen, och använde kommando “git log —oneline” igen. Nu kunde jag se att min senaste commit var en revert av en tidigare commit, och alla andra commits jag 
+gjort var kvar. Så det var tydligt för mig i historiken exakt vad jag hade gjort och vilken commit jag revertat.
 
-Ett tredje och sista sätt att rulla tillbaka kod till ett tidigare tillstånd är med kommando “git restore”, som introducerades i git 2.23.0 och framåt. Det är ett alternativ till att använda “git reset”, och kan också kombineras med olika 
-flaggor beroende på vad man vill göra. En viktigt och tydlig skillnad mellan “git restore” och “git reset” är att “git restore” ej påverkar historiken av commits som “git reset” gör. Det “git restore” gör är att det byter ut versionen av en
-fil i ens nuvarande working directory till en tidigare version av den filen. “Git restore” är även mycket mer specifikt ön “git reset”, eftersom man anger vilken fil det är man vill restore. Detta gör det möjligt att ha mer kontroll över 
-arbetet.
+Ett tredje och sista sätt att rulla tillbaka kod till ett tidigare tillstånd är med kommando “git restore”, som introducerades i git 2.23.0 och framåt. Det är ett alternativ till att använda 
+“git reset”, och kan också kombineras med olika flaggor beroende på vad man vill göra. En viktigt och tydlig skillnad mellan “git restore” och “git reset” är att “git restore” ej påverkar historiken 
+av commits som “git reset” gör. Det “git restore” gör är att det byter ut versionen av en fil i ens nuvarande working directory till en tidigare version av den filen. “Git restore” är även mycket mer 
+specifikt ön “git reset”, eftersom man anger vilken fil det är man vill restore. Detta gör det möjligt att ha mer kontroll över arbetet.
 
 En flagga som kan kombineras med “git restore” är —staged. Denna används när man vill ta bort en fil från staging area men behålla ändringarna i working directory (som “git reset —mixed” gör). 
 
 Exempel —staged:
-För att förklara med ett exempel, så gör jag en ändring i min fil testfile.txt, och skapar en ny fil “en_fil.txt”, och lägger därefter till allt i staging area med “git add .”. Jag använder “git status” för att säkerställa att jag commitar 
-rätt saker, och inser då att jag hellre skulle vilja göra två olika commits: en för att jag la till text i testfile.txt, och en för att jag skapade filen en_fil.txt. I utskriften när jag använder “git status” så står det faktiskt exakt hur 
-jag löser detta: genom att använda flaggan —staged i kombination med “git restore”. Så jag anger kommando “git restore —staged en_fil.txt”, och sen “git status” igen för att säkerställa mig om att det gick som jag ville. Och precis som jag 
-velat, så är min fil en_fil.txt inte längre med i staging area, och jag kan commita ändringen jag gjort i testfile.txt med ett relevant meddelande först, och därefter lägga till en_fil.txt i staging area igen och commita. 
+För att förklara med ett exempel, så gör jag en ändring i min fil testfile.txt, och skapar en ny fil “en_fil.txt”, och lägger därefter till allt i staging area med “git add .”. Jag använder “git status” 
+för att säkerställa att jag commitar rätt saker, och inser då att jag hellre skulle vilja göra två olika commits: en för att jag la till text i testfile.txt, och en för att jag skapade filen 
+en_fil.txt. I utskriften när jag använder “git status” så står det faktiskt exakt hur jag löser detta: genom att använda flaggan —staged i kombination med “git restore”. Så jag anger kommando 
+“git restore —staged en_fil.txt”, och sen “git status” igen för att säkerställa mig om att det gick som jag ville. Och precis som jag velat, så är min fil en_fil.txt inte längre med i staging area, 
+och jag kan commita ändringen jag gjort i testfile.txt med ett relevant meddelande först, och därefter lägga till en_fil.txt i staging area igen och commita. 
 
-En annan flagga som är användbar i kombination med “git restore” är —source. Med denna så kan man hämta en version av en fil från en tidigare commit och byta ut versionen i ens  nuvarande working directory mot den filen. Historiken påverkas
-inte av detta, och det skapas inte en ny commit automatiskt som när man använder “git revert”. Istället kan man först inspektera ändringarna i filen själv, och commita ifall man vill det. 
+En annan flagga som är användbar i kombination med “git restore” är —source. Med denna så kan man hämta en version av en fil från en tidigare commit och byta ut versionen i ens  nuvarande working 
+directory mot den filen. Historiken påverkasinte av detta, och det skapas inte en ny commit automatiskt som när man använder “git revert”. Istället kan man först inspektera ändringarna i filen själv, 
+och commita ifall man vill det. 
 
 Exempel —source:
-Jag testade detta i min test-branch, och precis som när jag skulle demonstrerar hur “git revert” fungerade så skrev jag lite text i testfile.txt, commita, skrev lite mer text, commita, och gjorde så några gånger. Därefter använde jag 
-kommando “git log —oneline” för att se vilken commit-version jag ville återgå till, och såg att det var för 4 commits sedan, alltså HEAD~4. Så med kommando “git restore —source HEAD~4 testfile.txt” så hömtade jag versionen från den commiten
-till mitt current working directory. Och för att se till att det gick som jag hoppades, så öppnade jag filen testfile.txt och kunde se att den såg ut som den andra versionen av filen, då jag bara lagt till en rad av text (första var när jag
-skapade filen och den var tom). Jag la sedan till filen till staging area, och commita med meddelande “restoring testfile.txt to early version”.
+Jag testade detta i min test-branch, och precis som när jag skulle demonstrerar hur “git revert” fungerade så skrev jag lite text i testfile.txt, commita, skrev lite mer text, commita, och gjorde så 
+några gånger. Därefter använde jag kommando “git log —oneline” för att se vilken commit-version jag ville återgå till, och såg att det var för 4 commits sedan, alltså HEAD~4. Så med kommando 
+“git restore —source HEAD~4 testfile.txt” så hömtade jag versionen från den commiten till mitt current working directory. Och för att se till att det gick som jag hoppades, så öppnade jag filen 
+testfile.txt och kunde se att den såg ut som den andra versionen av filen, då jag bara lagt till en rad av text (första var när jag skapade filen och den var tom). Jag la sedan till filen till staging 
+area, och commita med meddelande “restoring testfile.txt to early version”.
 
-Om man använder “git restore” utan flagga, så tar man bort ändringar från working directory och återställer filen till versionen som var med i den senaste commiten. Så det går alltså inte att använda detta om man först commitar, detta 
-kommando ska användas innan man commitat.
+Om man använder “git restore” utan flagga, så tar man bort ändringar från working directory och återställer filen till versionen som var med i den senaste commiten. Så det går alltså inte att använda 
+detta om man först commitar, detta kommando ska användas innan man commitat.
 
 Exempel restore:
-För att återigen demonstrera, så lägger jag till en massa tecken och text i filen testfile.txt, men ångar mig och vill gå tillbaka till hur filen var innan. Istället för att manuellt gå in i filen och radera rad för rad, så använder jag 
-bara kommando “git restore testfile.txt”. Därefter öppnar jag filen, och ser att all text och alla tecken som jag lagt till är borttagna, och testfile.txt har återgått till den senaste versionen i commit historiken. Väldigt mycket 
-effektivare och smidigare än om jag gått in och ändrat allt manuellt.
+För att återigen demonstrera, så lägger jag till en massa tecken och text i filen testfile.txt, men ångar mig och vill gå tillbaka till hur filen var innan. Istället för att manuellt gå in i filen och
+radera rad för rad, så använder jag bara kommando “git restore testfile.txt”. Därefter öppnar jag filen, och ser att all text och alla tecken som jag lagt till är borttagna, och testfile.txt har 
+återgått till den senaste versionen i commit historiken. Väldigt mycket effektivare och smidigare än om jag gått in och ändrat allt manuellt.
 
 Merge & Rebase
-Om man har jobbat i en feature-branch och vill integrera det man har utvecklat i den i sin main-branch så finns det lite olika sätt att göra detta på. Man kan t.ex. använda merge eller rebase; båda uppfyller samma syfte, de slår ihop olika 
-grenar, men sätter det gör detta på skiljer sig väldigt mycket.
+Om man har jobbat i en feature-branch och vill integrera det man har utvecklat i den i sin main-branch så finns det lite olika sätt att göra detta på. Man kan t.ex. använda merge eller rebase; 
+båda uppfyller samma syfte, de slår ihop olika grenar, men sätter det gör detta på skiljer sig väldigt mycket.
 
