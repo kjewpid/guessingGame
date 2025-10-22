@@ -178,3 +178,6 @@ Så svaret på frågan jag ställde i början av denna diskussion, om man ska v�
 det säkraste alternativet alltid merge, eftersom historiken är så värdefull. Men rebase kan vara väldigt användbart om man vill rensa och städa upp historiken lokalt. Rebase kan vara bra i team med 
 såklart, men i så fall är det väldigt viktigt att ha en öppen och tydlig kommunikation så att det inte uppstår några problem. Att ha en renare historik kan ha sina fördelar även i team men då måste 
 alla vara överens om det.
+
+Men som en generell regel; använd merge om man jobbar i team på ett remote repositories, i gemensamma brancher, och använd rebase för att rensa och städa upp historiken lokalt innan man gör en pull 
+request för att jobba i gemensamma brancher. 
