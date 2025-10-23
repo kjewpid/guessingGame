@@ -1,5 +1,5 @@
 - Försöker sikta på VG -
-
+Vad är pull repektive push?
 Push är ett kommando som används för att ladda upp commits man gjort i sitt lokala repository till ett remote repository på t.ex. github. 
 
 Pull är kommandot som används för att hämta commits från ett remote repository och merge dem med sina lokala filer/repository.  Pull är faktisk ett kommando som kombinerar två andra kommandon: 
@@ -7,6 +7,8 @@ fetch och merge. Om man vill ladda ner commitstill sitt repository men inte merg
 team som tillsammans jobbar på ett program och pushar commits till ett remote repository; kanske är det bra att kolla vad andra har pushat innan man merge med sina lokala filer för att säkerställa
 att det kommer gå bra. Efter att ha fetch:at så kan man använda kommandot merge, vilket synkar remote commits med ens lokala repository. 
 
+
+När använder man log respektive status?
 Log (git log) är ett kommando som används för att visa historiken av commits. Varje commit identifieras av en unik hash, som består av en massa tecken. Om man använder flaggan —oneline så kan man
 få en kortare identifierande sträng som endast består av 7 tecken (checksum). 
 
@@ -14,6 +16,8 @@ Status är ett kommando som används för att rapportera den nuvarande statusen 
 dem filerna man vill ha med i nästa commit. Status-kommandot visar även om det finns untracked files, samt vilken branch man befinner sig på och om den är up to date med ett eventuellt remote 
 repository. 
 
+
+Vad är en Git branch och varför är de viktiga?
 Brancher i git är separata utvecklingslinjer som är användbara på flera sätt. När man skapar en branch så skapas en kopia av ens current repository som sparas i en separat utvecklingslinje(branch), 
 och när man jobbar i den så påverkas inte main/master branchen. Skulle man t.ex. skapa en fil i en branch, så kommer den filen inte att existera i ens main/master branch (om man inte mergar dem). 
 Detta är som sagt väldigt användbart. Om man t.ex. vill testa en ny idé utan att råka förstöra det man jobbat på hittils, så kan man bara skapa en ny branch och testa sin idé säkert där. Skulle det 
@@ -21,6 +25,8 @@ inte gå som man hade tänkt, så kan man bara återgå till versionen som är k
 är vanligt att använda sig av feature-brancher, alltså brancher som används för att tillföra nya funktioner. Bugfix brancher används för felsökning och release branches är en sista vanlig typ av 
 branch, som används för att förbereda release av ett program. 
 
+
+Olika sätt att rulla tillbaka kod till tidigare tillstånd:
 Git reset är ett sätt för att gå tillbaka i historiken. Reset kan påverka historiken, men det beror på vilken flagga man kombinerar kommandot med.
 
 Om man använder flaggan —soft, så flyttas HEAD tillbaka till en tidigare commit och ändringarna är kvar i staging area samt i working directory. Detta betyder alltså att man kan commita exakt samma 
@@ -110,6 +116,7 @@ Exempel restore:
 För att återigen demonstrera, så lägger jag till en massa tecken och text i filen testfile.txt, men ångar mig och vill gå tillbaka till hur filen var innan. Istället för att manuellt gå in i filen och
 radera rad för rad, så använder jag bara kommando “git restore testfile.txt”. Därefter öppnar jag filen, och ser att all text och alla tecken som jag lagt till är borttagna, och testfile.txt har 
 återgått till den senaste versionen i commit historiken. Väldigt mycket effektivare och smidigare än om jag gått in och ändrat allt manuellt.
+
 
 Merge & Rebase
 Om man har jobbat i en feature-branch och vill integrera det man har utvecklat i den i sin main-branch så finns det lite olika sätt att göra detta på. Man kan t.ex. använda merge eller rebase; 
